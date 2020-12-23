@@ -1,0 +1,29 @@
+# Headless service for stable DNS entries of StatefulSet members.
+apiVersion: v1
+kind: Service
+metadata:
+  name: pfmmysql
+  labels:
+    app: pfmmysql
+spec:
+  ports:
+  - name: pfmmysql
+    port: 3306
+  clusterIP: None
+  selector:
+    app: pfmmysql
+---
+# Client service for connecting to any MySQL instance for reads.
+# For writes, you must instead connect to the primary: mysql-0.mysql.
+apiVersion: v1
+kind: Service
+metadata:
+  name: pfmmysql-read
+  labels:
+    app: pfmmysql
+spec:
+  ports:
+  - name: pfmmysql
+    port: 3306
+  selector:
+    app: pfmmysql
