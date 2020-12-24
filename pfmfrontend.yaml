@@ -6,7 +6,9 @@ spec:
   selector:
     app: pfmfrontend
     #tier: backend
+#  type: NodePort
   ports:
+#  - name: http
   - protocol: TCP
     port: 8080
     targetPort: 8080
