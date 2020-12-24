@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pfmingress
+spec:
+  rules:
+  - host: "pfm.suh.com"
+    http:
+      paths:
+      - path: "/pfm"
+        pathType: Prefix
+        backend:
+          service:
+            name: pfmfrontend
+            port: 
+              number: 8080
